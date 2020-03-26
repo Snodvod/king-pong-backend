@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PlayerRepository")
+ *
  */
 class Player
 {
@@ -35,23 +36,14 @@ class Player
     private $imageUrl;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Match", mappedBy="winners")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Team", mappedBy="players")
      */
-    private $matchesWon;
+    private $teams;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Match", mappedBy="teamA")
-     */
-    private $matchesA;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Match", mappedBy="teamB")
-     */
-    private $matchesB;
-
-    public function __construct(string $name, ?string $imageUrl)
+    public function __construct(string $name, int $skillValue, ?string $imageUrl)
     {
         $this->name     = $name;
+        $this->skillValue = $skillValue;
         $this->imageUrl = $imageUrl;
     }
 
@@ -65,31 +57,9 @@ class Player
         return $this->skillValue;
     }
 
-
-    public function getImageUrl()
+    public function getImageUrl(): ?string
     {
         return $this->imageUrl;
     }
-
-    public function getMatchesWon()
-    {
-        return $this->matchesWon;
-    }
-
-    public function getMatchesA(): Collection
-    {
-        return $this->matchesA;
-    }
-
-    public function getMatchesB(): Collection
-    {
-        return $this->matchesB;
-    }
-
-    public function getMatchesPlayed(): array
-    {
-        return array_merge($this->getMatchesA()->toArray(), $this->getMatchesB()->toArray());
-    }
-
 }
 

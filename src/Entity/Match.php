@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,43 +20,16 @@ class Match
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Player", inversedBy="matchesA")
+     * @ORM\OneToMany(targetEntity="Team", mappedBy="match")
      */
-    private $teamA;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Player", inversedBy="matchesB")
-     */
-    private $teamB;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $scoreA;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $scoreB;
+    private $teams;
 
     public function __construct(
-        array $teamA,
-        array $teamB,
-        int $scoreA,
-        int $scoreB
+        Collection $teams
     )
     {
-
+        $this->teams = $teams;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getSkillValue(): int
-    {
-        return $this->skillValue;
-    }
 }
 
