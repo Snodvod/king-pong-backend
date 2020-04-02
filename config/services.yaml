@@ -31,3 +31,8 @@ services:
         factory: ["@doctrine.orm.entity_manager", getRepository]
         arguments:
             - App\Entity\Player
+    App\Repository\MatchRepository:
+        class: Doctrine\ORM\EntityRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - App\Entity\Match

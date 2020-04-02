@@ -61,5 +61,9 @@ class Player
     {
         return $this->imageUrl;
     }
-}
 
+    public function getTeams(): array
+    {
+        return $this->teams;
+    }
+}
