@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,13 +33,20 @@ class Team
      */
     private $score;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $hasWon;
+
     public function __construct(
-        Collection $players,
-        int $score
-    )
-    {
+        array $players,
+        bool $hasWon,
+        Match $match
+    ) {
         $this->players = $players;
-        $this->score = $score;
+        $this->hasWon  = $hasWon;
+        $this->score   = 5;
+        $this->match   = $match;
     }
 
     public function getPlayers()

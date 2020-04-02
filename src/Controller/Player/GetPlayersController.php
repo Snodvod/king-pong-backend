@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\Player;
 
 use App\Repository\PlayerRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -23,7 +23,7 @@ class GetPlayersController
     }
 
     /**
-     * @Route("/api/players")
+     * @Route("/api/players", methods={"GET"})
      */
     public function __invoke(Request $request): JsonResponse
     {

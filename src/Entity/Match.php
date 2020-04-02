@@ -20,16 +20,13 @@ class Match
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Team", mappedBy="match")
+     * @ORM\Column(type="datetime")
      */
-    private $teams;
+    private $playedAt;
 
-    public function __construct(
-        Collection $teams
-    )
+    public function __construct()
     {
-        $this->teams = $teams;
+        $this->playedAt = new \DateTimeImmutable();
     }
-
 }
 
