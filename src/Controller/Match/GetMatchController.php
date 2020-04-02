@@ -16,7 +16,5 @@ class GetMatchController
     {
         $requestContent = \json_decode($request->getContent());
 
-        $requestContent
-
     }
 }
