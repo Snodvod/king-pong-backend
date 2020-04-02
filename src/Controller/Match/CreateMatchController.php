@@ -8,6 +8,7 @@ use App\Entity\Match;
 use App\Entity\Team;
 use App\Repository\PlayerRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,11 +17,13 @@ class CreateMatchController
 {
     private $playerRepository;
     private $entityManager;
+    private $logger;
 
-    public function __construct(PlayerRepository $playerRepository, EntityManagerInterface $entityManager)
+    public function __construct(PlayerRepository $playerRepository, EntityManagerInterface $entityManager, LoggerInterface $logger)
     {
         $this->playerRepository = $playerRepository;
         $this->entityManager    = $entityManager;
+        $this->logger = $logger;
     }
 
     /**
