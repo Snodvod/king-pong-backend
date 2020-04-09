@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PlayerRepository")
@@ -37,6 +38,7 @@ class Player
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Team", mappedBy="players")
+     * @JMS\Exclude()
      */
     private $teams;
 
@@ -69,6 +71,6 @@ class Player
 
     public function getTeams(): array
     {
-        return $this->teams;
+        return $this->teams->toArray();
     }
 }

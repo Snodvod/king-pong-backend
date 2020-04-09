@@ -5,6 +5,8 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "jms/serializer": "^3.6",
+        "jms/serializer-bundle": "^3.5",
         "nelmio/cors-bundle": "^2.0",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/console": "5.0.*",

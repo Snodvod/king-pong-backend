@@ -49,6 +49,12 @@ class Team
         $this->match   = $match;
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
     public function getPlayers()
     {
         return $this->players;
@@ -62,5 +68,10 @@ class Team
     public function getScore()
     {
         return $this->score;
+    }
+
+    public function isHasWon(): bool
+    {
+        return $this->hasWon;
     }
 }

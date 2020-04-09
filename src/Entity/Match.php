@@ -20,18 +20,23 @@ class Match
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime_immutable")
      */
     private $playedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Team", mappedBy="match")
+     * @ORM\OneToMany(targetEntity="App\Entity\Team", mappedBy="match")
      */
     private $teams;
 
     public function __construct()
     {
         $this->playedAt = new \DateTimeImmutable();
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getPlayedAt(): \DateTimeImmutable
