@@ -24,9 +24,24 @@ class Match
      */
     private $playedAt;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Team", mappedBy="match")
+     */
+    private $teams;
+
     public function __construct()
     {
         $this->playedAt = new \DateTimeImmutable();
+    }
+
+    public function getPlayedAt(): \DateTimeImmutable
+    {
+        return $this->playedAt;
+    }
+
+    public function getTeams()
+    {
+        return $this->teams;
     }
 }
 
