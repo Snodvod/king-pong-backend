@@ -10,5 +10,9 @@ seed:
 serve:
 	symfony server:start
 
+.PHONY: install
+install:
+	composer install
+
 .PHONY: all
-all: seed serve
+all: install seed serve
