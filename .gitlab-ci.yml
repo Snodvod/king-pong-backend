@@ -1,0 +1,27 @@
+image: node:latest
+stages:
+  - build
+  - deploy
+build backend:
+  stage: build
+  image: composer:latest
+  script:
+    - composer install --ignore-platform-reqs --prefer-dist --optimize-autoloader --no-dev
+  artifacts:
+    paths:
+      - vendor
+      - index.php
+      - serverless.yml
+  cache:
+    paths:
+      - vendor/
+deploy api:
+  stage: deploy
+  dependencies:
+    - "build backend"
+  before_script:
+    - npm config set prefix /usr/local
+    - npm install -g serverless
+  script:
+    - serverless deploy --stage production --verbose
+  environment: production
